@@ -44,6 +44,20 @@ test('app: orbiting the 3D view does not re-run the light pass', async () => {
   assert(app.renderer.relightPasses === p0, `${app.renderer.relightPasses - p0} extra light passes`);
 });
 
+test('app: in 3D, pressing a mode button does not start an orbit (buttons stay usable)', async () => {
+  app.setMode('3d');
+  const doc = frame.contentDocument;
+  const btn = doc.querySelector('[data-mode="relit"]');
+  const yaw0 = app.state.orbit.yaw;
+  const opts = { bubbles: true, button: 0, pointerId: 1, clientX: 100, clientY: 100 };
+  btn.dispatchEvent(new frame.contentWindow.PointerEvent('pointerdown', opts));
+  btn.dispatchEvent(new frame.contentWindow.PointerEvent('pointermove', { ...opts, clientX: 200 }));
+  btn.dispatchEvent(new frame.contentWindow.PointerEvent('pointerup', { ...opts, clientX: 200 }));
+  assert(app.state.orbit.yaw === yaw0, 'a press on the mode bar started an orbit drag');
+  btn.click();
+  assert(app.state.mode === 'relit', `mode is ${app.state.mode}`);
+});
+
 test('app: moving a lamp re-runs the light pass once (flat view)', async () => {
   app.setMode('relit');
   await sleep(150);

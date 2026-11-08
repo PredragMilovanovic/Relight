@@ -277,6 +277,9 @@ function setupStage() {
   let orbitDrag = null;
   stage.addEventListener('pointerdown', (e) => {
     if (!renderer?.ready || state.mode !== '3d' || e.button !== 0) return;
+    // Only a press on the 3D view itself starts an orbit. Capturing the pointer for a press on the
+    // mode bar (or any other overlay) would swallow that button's click.
+    if (e.target !== $('view')) return;
     orbitDrag = { x: e.clientX, y: e.clientY, yaw: state.orbit.yaw, pitch: state.orbit.pitch };
     stage.setPointerCapture(e.pointerId);
   });
