@@ -1,0 +1,125 @@
+{
+  "samples": [
+    {
+      "id": "statue",
+      "title": "Marble statue",
+      "image": "statue.jpg",
+      "thumb": "statue.thumb.jpg",
+      "depth": "statue.depth.bin",
+      "settings": {
+        "ambient": 0.07,
+        "flatten": 0.35,
+        "haze": 0.35,
+        "exposure": 1.3,
+        "spec": 0.25,
+        "gloss": 40,
+        "depthRange": 3
+      },
+      "lights": [
+        {
+          "u": 0.2,
+          "v": 0.72,
+          "kelvin": 2700,
+          "intensity": 2.6,
+          "depth": 0.12
+        },
+        {
+          "u": 0.85,
+          "v": 0.45,
+          "kelvin": 12000,
+          "intensity": 1.2,
+          "depth": 0.2
+        }
+      ]
+    },
+    {
+      "id": "livingroom",
+      "title": "Living room",
+      "image": "livingroom.jpg",
+      "thumb": "livingroom.thumb.jpg",
+      "depth": "livingroom.depth.bin",
+      "settings": {
+        "ambient": 0.12,
+        "flatten": 0.45,
+        "haze": 0.3,
+        "exposure": 1.2
+      },
+      "lights": [
+        {
+          "u": 0.7,
+          "v": 0.58,
+          "kelvin": 2700,
+          "intensity": 1.6,
+          "depth": 1
+        },
+        {
+          "u": 0.46,
+          "v": 0.88,
+          "kelvin": 4000,
+          "intensity": 1.4,
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "id": "bedroom",
+      "title": "Castle bedroom",
+      "image": "bedroom.jpg",
+      "thumb": "bedroom.thumb.jpg",
+      "depth": "bedroom.depth.bin",
+      "settings": {
+        "ambient": 0.1,
+        "flatten": 0.4,
+        "haze": 0.22,
+        "exposure": 1.25
+      },
+      "lights": [
+        {
+          "u": 0.145,
+          "v": 0.5,
+          "kelvin": 1900,
+          "intensity": 1.4,
+          "depth": 1
+        },
+        {
+          "u": 0.5,
+          "v": 0.52,
+          "kelvin": 2700,
+          "intensity": 1.2,
+          "depth": 1
+        },
+        {
+          "u": 0.855,
+          "v": 0.47,
+          "kelvin": 2700,
+          "intensity": 1.1,
+          "depth": 1
+        }
+      ]
+    },
+    {
+      "id": "stilllife",
+      "title": "Still life painting",
+      "image": "stilllife.jpg",
+      "thumb": "stilllife.thumb.jpg",
+      "depth": "stilllife.depth.bin",
+      "settings": {
+        "ambient": 0.2,
+        "flatten": 0.5,
+        "haze": 0.2,
+        "exposure": 1.3,
+        "spec": 0.35,
+        "gloss": 48
+      },
+      "lights": [
+        {
+          "u": 0.18,
+          "v": 0.85,
+          "kelvin": 2700,
+          "intensity": 2.0,
+          "depth": 0.1
+        }
+      ]
+    }
+  ]
+}

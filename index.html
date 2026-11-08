@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relight · light any photo again</title>
+  <meta name="description" content="Drop in any photo. A neural network reconstructs it in 3D in your browser, then you light it again with real-time lamps, shadows and glow.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='7' fill='%23ffc46b'/%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23ffc46b' stroke-opacity='.35' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <span class="name">Relight</span>
+      <span class="tag">AI depth · real-time light</span>
+    </div>
+    <div class="actions">
+      <label class="btn primary" title="Open a photo (or drop it anywhere)">
+        <input id="fileInput" type="file" accept="image/*" hidden>
+        Open photo
+      </label>
+      <button class="btn" id="camBtn" title="Take a photo with your webcam">Camera</button>
+      <button class="btn" id="samplesBtn" title="Example photos">Examples</button>
+      <button class="btn" id="saveBtn" title="Save the relit image as PNG" disabled>Save image</button>
+      <button class="btn" id="gifBtn" title="Record a short animation (GIF) of the selected lamp moving, or of the 3D view" disabled>Save animation</button>
+      <button class="btn icon" id="panelBtn" title="Show / hide controls" aria-label="Toggle controls">☰</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="stage" id="stage">
+      <canvas id="view"></canvas>
+      <div id="gizmos" class="gizmos"></div>
+      <div id="splitHandle" class="split-handle" hidden><span>⇆</span></div>
+
+      <div class="empty" id="empty">
+        <h1>Light any photo <em>again</em>.</h1>
+        <p>Drop in a photo. A neural network turns it into 3D right in your browser, then you
+          place lamps and watch real shadows and glow follow the scene.</p>
+        <div class="empty-actions">
+          <label class="btn primary big">
+            <input id="fileInput2" type="file" accept="image/*" hidden>Choose a photo
+          </label>
+          <button class="btn big" id="camBtn2">Use camera</button>
+        </div>
+        <div class="samples" id="samples"></div>
+        <p class="fine">Nothing is uploaded: the photo and the AI model stay on your computer.</p>
+      </div>
+
+      <div class="camera" id="camera" hidden>
+        <video id="camVideo" playsinline muted></video>
+        <div class="camera-actions">
+          <button class="btn primary big" id="camShoot">Take photo</button>
+          <button class="btn big" id="camCancel">Cancel</button>
+        </div>
+      </div>
+
+      <div class="busy" id="busy" hidden>
+        <div class="spinner"></div>
+        <div class="busy-text" id="busyText">Working…</div>
+        <div class="bar"><div id="busyBar"></div></div>
+        <div class="busy-sub" id="busySub"></div>
+      </div>
+
+      <nav class="modes" id="modes" hidden>
+        <button data-mode="relit" class="on">Relit</button>
+        <button data-mode="split">Before / after</button>
+        <button data-mode="3d">3D</button>
+        <button data-mode="depth">Depth</button>
+        <button data-mode="normals">Normals</button>
+      </nav>
+      <div class="hint" id="hint" hidden></div>
+      <div class="hud" id="hud" hidden></div>
+      <div class="toast" id="toast" hidden></div>
+    </section>
+
+    <aside class="panel" id="panel">
+      <section>
+        <h2>Lights <button class="mini" id="addLight" title="Add a light">+ Add</button></h2>
+        <div class="light-list" id="lightList"></div>
+        <div id="lightEditor" class="light-editor"></div>
+      </section>
+      <section>
+        <h2>Room</h2>
+        <div id="roomControls"></div>
+      </section>
+      <section>
+        <h2>Surface &amp; shadows</h2>
+        <div id="surfaceControls"></div>
+      </section>
+      <section>
+        <h2>3D reconstruction</h2>
+        <div id="depthControls"></div>
+      </section>
+      <section>
+        <h2>Performance</h2>
+        <div id="perfControls"></div>
+      </section>
+      <footer class="credits">
+        Depth: <a href="https://github.com/DepthAnything/Depth-Anything-V2" target="_blank" rel="noopener">Depth Anything V2</a>
+        via <a href="https://github.com/huggingface/transformers.js" target="_blank" rel="noopener">transformers.js</a>.
+        Lighting: custom WebGL2 shaders. <a href="https://github.com/predragmilovanovic/Relight" target="_blank" rel="noopener">Source &amp; docs</a>
+      </footer>
+    </aside>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

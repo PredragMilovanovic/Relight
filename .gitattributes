@@ -1,0 +1,4 @@
+# The WebAssembly bundle is built from core/ by scripts/build_wasm.ps1; keep it out of language stats and diffs.
+js/relight_core.js linguist-generated=true -diff
+samples/*.depth.bin binary
+*.ps1 text eol=crlf

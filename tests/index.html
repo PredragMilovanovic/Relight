@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Relight tests</title>
+  <style>
+    body { font: 13px/1.5 ui-monospace, Consolas, monospace; background: #0b0c0f; color: #e9ebf0; padding: 16px; }
+    .pass { color: #7ddc8a; } .fail { color: #ff8a8a; }
+    canvas, iframe { display: block; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <h1>Relight tests</h1>
+  <pre id="report">running…</pre>
+  <script type="module">
+    import { run } from './harness.js';
+    import './math.test.js';
+    import './render.test.js';
+    import './app.test.js';
+    run();
+  </script>
+</body>
+</html>
